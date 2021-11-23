@@ -132,9 +132,13 @@ public class AddTransactionDialogFragment extends DialogFragment {
                     }
                 });
 
-
         builder.setView(view).setNegativeButton(R.string.button_cancel,
-                (dialog, id) -> getDialog().cancel());
+                (dialogInterface, id) -> {
+                    if (getDialog() != null) {
+                        getDialog().cancel();
+                    }
+
+                });
         return builder.create();
     }
 
