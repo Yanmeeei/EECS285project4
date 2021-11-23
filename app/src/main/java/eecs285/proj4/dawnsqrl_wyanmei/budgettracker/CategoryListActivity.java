@@ -170,19 +170,6 @@ public class CategoryListActivity extends AppCompatActivity
         dialog.show(getSupportFragmentManager(), "ClearDataDialogFragment");
     }
 
-
-//    public void clearData() {
-//        transactions.clear();
-//        categories.clear();
-//
-//        viewTotal();
-//
-//        writeBudgets();
-//        adapter_cat.notifyDataSetChanged();
-//
-//    }
-
-
     void viewTotal() {
 
         Double totalAmount = 0.0;
@@ -191,25 +178,7 @@ public class CategoryListActivity extends AppCompatActivity
         }
 
         TextView totalView = findViewById(R.id.totalCostView);
-        totalView.setText(String.format(Locale.getDefault(), "$%.2f", totalAmount));
+        totalView.setText(String.format(Locale.getDefault(), "Total: $%.2f", totalAmount));
     }
 
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

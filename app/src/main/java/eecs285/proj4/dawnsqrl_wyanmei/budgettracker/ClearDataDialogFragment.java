@@ -5,6 +5,7 @@ import eecs285.proj4.dawnsqrl_wyanmei.budgettracker.CategoryListActivity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +40,13 @@ public class ClearDataDialogFragment extends DialogFragment {
         builder.setView(view).setPositiveButton(R.string.button_yes,
                 (dialog, id) -> confirmedClearData(view)).setNegativeButton(R.string.button_cancel,
                 (dialog, id) -> getDialog().cancel());
-        return builder.create();
+
+        AlertDialog dialog = builder.create();
+        dialog.setOnShowListener(this_dialog -> (
+            (AlertDialog) this_dialog).getButton(DialogInterface.BUTTON_POSITIVE)
+            .setTextColor(getResources().getColor(R.color.warning, getActivity().getTheme())
+        ));
+        return dialog;
     }
 
     void confirmedClearData(View view) {
