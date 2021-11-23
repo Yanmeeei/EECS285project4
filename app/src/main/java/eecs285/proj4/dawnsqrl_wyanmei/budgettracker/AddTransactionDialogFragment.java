@@ -11,9 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -24,7 +27,7 @@ public class AddTransactionDialogFragment extends DialogFragment {
 
     interface AddTransactionDialogListener {
         void onDialogPositiveClick_AddTransaction(DialogFragment dialog, String title, String category,
-                                                  String amount);
+                                                  String amount, boolean isIncome);
     }
 
     @Override
@@ -40,7 +43,6 @@ public class AddTransactionDialogFragment extends DialogFragment {
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         builder.setTitle(R.string.title_dialog_add);
         View view = inflater.inflate(R.layout.dialog_add_transaction, null);
-
 
         builder.setView(view).setPositiveButton(R.string.button_add,
                 (dialogInterface, id) -> {
@@ -63,6 +65,7 @@ public class AddTransactionDialogFragment extends DialogFragment {
         EditText titleText = view.findViewById(R.id.nameInput);
         EditText categoryText = view.findViewById(R.id.categoryInput);
         EditText costText = view.findViewById(R.id.costInput);
+        Switch isIncome = view.findViewById(R.id.incomeSwitch);
 
         if (!validate(view)) {
             return;
@@ -71,7 +74,8 @@ public class AddTransactionDialogFragment extends DialogFragment {
         listener.onDialogPositiveClick_AddTransaction(this,
                 titleText.getText().toString().trim(),
                 categoryText.getText().toString().trim(),
-                costText.getText().toString().trim());
+                costText.getText().toString().trim(),
+                isIncome.isChecked());
     }
 
     boolean validate(View view) {

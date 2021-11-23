@@ -81,4 +81,10 @@
             android:inputType="number"
             android:textColor="?android:textColorPrimary" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <Switch
+        android:id="@+id/incomeSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_income" />
 </LinearLayout>

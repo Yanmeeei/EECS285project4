@@ -136,8 +136,13 @@ public class CategoryListActivity extends AppCompatActivity
     public void onDialogPositiveClick_AddTransaction(DialogFragment dialog,
                                                      String title,
                                                      String category,
-                                                     String amount) {
+                                                     String amount,
+                                                     boolean isIncome) {
         Double amount_double = Double.parseDouble(amount);
+
+        if (isIncome) {
+            amount_double = -amount_double;
+        }
 
         transactions.add(0, new Transaction(title, category, amount_double));
 

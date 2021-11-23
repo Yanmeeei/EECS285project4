@@ -3,6 +3,7 @@
     <string name="title_activity_transaction_list">All Transactions</string>
     <string name="title_dialog_add">Add Transaction</string>
     <string name="button_clear">Clear Data</string>
+    <string name="button_income">this is an income</string>
     <string name="button_transaction">Transactions</string>
     <string name="button_add">Add</string>
     <string name="button_cancel">Cancel</string>
