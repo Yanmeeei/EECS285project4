@@ -14,4 +14,5 @@
     <string name="text_error_category">Enter a category</string>
     <string name="text_error_name">Enter a name</string>
     <string name="text_error_cost">Enter a valid cost</string>
+    <string name="toast_dark_mode">This app supports dark mode. Protect your eyes!</string>
 </resources>
