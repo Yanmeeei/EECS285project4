@@ -4,23 +4,23 @@ import java.io.Serializable;
 
 public class Category implements Serializable {
 
-  private String title;
-  private Double amount;
+    private String title;
+    private Double amount;
 
-  Category(String title, Double amount) {
-    this.title = title;
-    this.amount = amount;
-  }
+    Category(String title, Double amount) {
+        this.title = title;
+        this.amount = amount;
+    }
 
-  String getTitle() {
-    return title;
-  }
+    String getTitle() {
+        return title;
+    }
 
-  Double getAmount() {
-    return amount;
-  }
+    Double getAmount() {
+        return amount;
+    }
 
-  void addAmount(Double amount) {
-    this.amount += amount;
-  }
+    void addAmount(Double amount) {
+        this.amount += amount;
+    }
 }

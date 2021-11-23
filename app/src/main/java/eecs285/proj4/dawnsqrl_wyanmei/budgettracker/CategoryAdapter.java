@@ -14,24 +14,24 @@ import java.util.ArrayList;
 
 class CategoryAdapter extends ArrayAdapter<Category> {
 
-  CategoryAdapter(Context context, int resource, ArrayList<Category> categories) {
-    super(context, resource, categories);
-  }
-
-  @NonNull
-  @Override
-  public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-    if (convertView == null) {
-      convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_category,
-          parent, false);
+    CategoryAdapter(Context context, int resource, ArrayList<Category> categories) {
+        super(context, resource, categories);
     }
 
-    TextView costView = convertView.findViewById(R.id.mainCostView);
-    costView.setText(String.format("$%.2f", getItem(position).getAmount()));
+    @NonNull
+    @Override
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        if (convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_category,
+                    parent, false);
+        }
 
-    TextView titleView = convertView.findViewById(R.id.mainCategoryView);
-    titleView.setText(getItem(position).getTitle());
+        TextView costView = convertView.findViewById(R.id.mainCostView);
+        costView.setText(String.format("$%.2f", getItem(position).getAmount()));
 
-    return convertView;
-  }
+        TextView titleView = convertView.findViewById(R.id.mainCategoryView);
+        titleView.setText(getItem(position).getTitle());
+
+        return convertView;
+    }
 }
