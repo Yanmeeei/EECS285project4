@@ -22,6 +22,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Locale;
 import java.util.Map;
@@ -137,7 +139,7 @@ public class CategoryListActivity extends AppCompatActivity
                                                      String amount) {
         Double amount_double = Double.parseDouble(amount);
 
-        transactions.add(new Transaction(title, category, amount_double));
+        transactions.add(0, new Transaction(title, category, amount_double));
 
         //update category
         boolean found = false;

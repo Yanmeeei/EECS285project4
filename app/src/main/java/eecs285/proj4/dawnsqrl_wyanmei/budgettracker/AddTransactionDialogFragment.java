@@ -3,14 +3,20 @@ package eecs285.proj4.dawnsqrl_wyanmei.budgettracker;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
+
+import com.google.android.material.textfield.TextInputLayout;
 
 public class AddTransactionDialogFragment extends DialogFragment {
 
@@ -34,8 +40,21 @@ public class AddTransactionDialogFragment extends DialogFragment {
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         builder.setTitle(R.string.title_dialog_add);
         View view = inflater.inflate(R.layout.dialog_add_transaction, null);
+
+
         builder.setView(view).setPositiveButton(R.string.button_add,
-                (dialog, id) -> addTransaction(view)).setNegativeButton(R.string.button_cancel,
+                (dialogInterface, id) -> {
+                    if(!validate(view))
+                    {
+                        ((ViewGroup) view.getParent()).removeView(view);
+                        builder.show();
+                    } else {
+                        addTransaction(view);
+                    }
+                });
+
+
+        builder.setView(view).setNegativeButton(R.string.button_cancel,
                 (dialog, id) -> getDialog().cancel());
         return builder.create();
     }
@@ -45,16 +64,49 @@ public class AddTransactionDialogFragment extends DialogFragment {
         EditText categoryText = view.findViewById(R.id.categoryInput);
         EditText costText = view.findViewById(R.id.costInput);
 
-//        while (TextUtils.isEmpty(titleText.getText().toString())
-//                || TextUtils.isEmpty(categoryText.getText().toString())
-//                || TextUtils.isEmpty(costText.getText().toString())) {
-//            titleText.setError("Your message");
-//        }
-
+        if (!validate(view)) {
+            return;
+        }
 
         listener.onDialogPositiveClick_AddTransaction(this,
                 titleText.getText().toString().trim(),
                 categoryText.getText().toString().trim(),
                 costText.getText().toString().trim());
     }
+
+    boolean validate(View view) {
+        TextInputLayout titleInputLayout = view.findViewById(R.id.titleInputLayout);
+        TextInputLayout categoryInputLayout = view.findViewById(R.id.categoryInputLayout);
+        TextInputLayout costInputLayout = view.findViewById(R.id.costInputLayout);
+
+        EditText titleText = view.findViewById(R.id.nameInput);
+        EditText categoryText = view.findViewById(R.id.categoryInput);
+        EditText costText = view.findViewById(R.id.costInput);
+
+        if (TextUtils.isEmpty(titleText.getText().toString())
+            || TextUtils.isEmpty(categoryText.getText().toString())
+            || TextUtils.isEmpty(costText.getText().toString())) {
+
+            if (TextUtils.isEmpty(titleText.getText().toString())) {
+                titleInputLayout.setError("required input");
+                titleText.requestFocus();
+            }
+
+            if (TextUtils.isEmpty(categoryText.getText().toString())) {
+                categoryInputLayout.setError("required input");
+                categoryText.requestFocus();
+            }
+
+            if (TextUtils.isEmpty(costText.getText().toString())) {
+                costInputLayout.setError("required input");
+                costText.requestFocus();
+            }
+
+            return false;
+        } else {
+            titleInputLayout.setErrorEnabled(false);
+        }
+        return true;
+    }
+
 }

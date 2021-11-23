@@ -10,6 +10,7 @@
     android:paddingBottom="4dp">
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/categoryInputLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="4dp"
@@ -17,6 +18,7 @@
         app:boxStrokeColor="@color/highlight"
         app:boxStrokeErrorColor="@color/warning"
         app:counterOverflowTextColor="@color/warning"
+        app:errorEnabled="true"
         app:errorTextColor="@color/warning"
         app:hintTextColor="@color/highlight">
 
@@ -24,6 +26,8 @@
             android:id="@+id/categoryInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:hint="@string/text_category"
             android:inputType="textCapWords"
             android:textColor="?android:textColorPrimary" />
@@ -31,6 +35,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/titleInputLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="4dp"
@@ -38,6 +43,7 @@
         app:boxStrokeColor="@color/highlight"
         app:boxStrokeErrorColor="@color/warning"
         app:counterOverflowTextColor="@color/warning"
+        app:errorEnabled="true"
         app:errorTextColor="@color/warning"
         app:hintTextColor="@color/highlight">
 
@@ -45,18 +51,22 @@
             android:id="@+id/nameInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:hint="@string/text_name"
             android:inputType="textCapWords"
             android:textColor="?android:textColorPrimary" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/costInputLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:boxBackgroundColor="@color/invisible"
         app:boxStrokeColor="@color/highlight"
         app:boxStrokeErrorColor="@color/warning"
         app:counterOverflowTextColor="@color/warning"
+        app:errorEnabled="true"
         app:errorTextColor="@color/warning"
         app:hintTextColor="@color/highlight">
 
@@ -65,6 +75,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:hint="@string/text_cost"
             android:inputType="number"
             android:textColor="?android:textColorPrimary" />
