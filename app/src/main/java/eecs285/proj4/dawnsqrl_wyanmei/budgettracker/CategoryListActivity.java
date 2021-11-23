@@ -140,20 +140,22 @@ public class CategoryListActivity extends AppCompatActivity
 
   }
 
-  ArrayList<Category> convertTreeMap(TreeMap<String, Category> categories) {
-    ArrayList<Category> tray = new ArrayList<>();
-    for (Map.Entry<String, Category> entry : categories.entrySet()) {
-      tray.add(new Category(entry.getValue().getTitle(), entry.getValue().getAmount()));
-    }
-    return tray;
-  }
-
-
   public void viewTransactions(View view) {
     Intent intent = new Intent(this, TransactionListActivity.class);
     intent.putExtra(EXTRA_TRANSACTION, transactions);
     startActivity(intent);
   }
+
+  public void clearData(View view) {
+    transactions.clear();
+    categories.clear();
+
+    writeBudgets();
+
+    adapter_cat.notifyDataSetChanged();
+
+  }
+
 
 }
 

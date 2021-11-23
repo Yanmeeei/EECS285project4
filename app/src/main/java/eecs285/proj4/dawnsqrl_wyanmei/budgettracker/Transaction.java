@@ -11,8 +11,6 @@ public class Transaction implements Serializable {
     private Double amount;
     private String timeStamp;
 
-    //TODO: 添加time field
-
     Transaction(String title, String category, Double amount) {
         this.title = title;
         this.category = category;
