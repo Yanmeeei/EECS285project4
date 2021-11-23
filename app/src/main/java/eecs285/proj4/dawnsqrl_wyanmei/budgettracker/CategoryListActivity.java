@@ -181,6 +181,15 @@ public class CategoryListActivity extends AppCompatActivity
 
         TextView totalView = findViewById(R.id.totalCostView);
         totalView.setText(String.format(Locale.getDefault(), "Total: $%.2f", totalAmount));
+
+        if (totalAmount >= 0) {
+            totalView.setTextColor(getResources().getColor(R.color.white, getTheme()));
+        } else {
+            totalView.setText(String.format(Locale.getDefault(), "Total: $%.2f", -totalAmount));
+            totalView.setTextColor(getResources().getColor(R.color.green, getTheme()));
+        }
+
+
     }
 
 }
