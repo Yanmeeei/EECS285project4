@@ -9,7 +9,13 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="4dp">
+        android:layout_margin="4dp"
+        app:boxBackgroundColor="@color/invisible"
+        app:boxStrokeColor="@color/highlight"
+        app:boxStrokeErrorColor="@color/warning"
+        app:counterOverflowTextColor="@color/warning"
+        app:errorTextColor="@color/warning"
+        app:hintTextColor="@color/highlight">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/categoryInput"
@@ -24,7 +30,13 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="4dp">
+        android:layout_margin="4dp"
+        app:boxBackgroundColor="@color/invisible"
+        app:boxStrokeColor="@color/highlight"
+        app:boxStrokeErrorColor="@color/warning"
+        app:counterOverflowTextColor="@color/warning"
+        app:errorTextColor="@color/warning"
+        app:hintTextColor="@color/highlight">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/nameInput"
@@ -37,7 +49,13 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:boxBackgroundColor="@color/invisible"
+        app:boxStrokeColor="@color/highlight"
+        app:boxStrokeErrorColor="@color/warning"
+        app:counterOverflowTextColor="@color/warning"
+        app:errorTextColor="@color/warning"
+        app:hintTextColor="@color/highlight">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/costInput"
@@ -45,6 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:hint="@string/text_cost"
+            android:inputType="text"
             android:textColor="?android:textColorPrimary" />
     </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>

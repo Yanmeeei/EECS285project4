@@ -6,13 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class TransactionListActivity extends AppCompatActivity {
 
-  private ArrayAdapter<Transaction> adapter_tran;
+  private ArrayAdapter<Transaction> adapter_transaction;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +24,11 @@ public class TransactionListActivity extends AppCompatActivity {
 
     //get passed info
     Intent intent = getIntent();
-    ArrayList<Transaction> transactions = (ArrayList<Transaction>) intent.getSerializableExtra(CategoryListActivity.EXTRA_TRANSACTION);
-
-    adapter_tran = new TransactionsAdapter(this, R.layout.activity_transaction_list, transactions);
-    ListView listView =
-            findViewById(R.id.transactionList);
-    listView.setAdapter(adapter_tran);
-
+    ArrayList<Transaction> transactions = (ArrayList<Transaction>)
+        intent.getSerializableExtra(CategoryListActivity.EXTRA_TRANSACTION);
+    adapter_transaction = new TransactionsAdapter(this, R.layout.activity_transaction_list,
+        transactions);
+    ListView listView = findViewById(R.id.transactionList);
+    listView.setAdapter(adapter_transaction);
   }
 }

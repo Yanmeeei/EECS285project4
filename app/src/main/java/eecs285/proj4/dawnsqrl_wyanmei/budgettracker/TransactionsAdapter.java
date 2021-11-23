@@ -13,30 +13,30 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
 public class TransactionsAdapter extends ArrayAdapter<Transaction> {
-    TransactionsAdapter(Context context, int resource, ArrayList<Transaction> transactions) {
-        super(context, resource, transactions);
+
+  TransactionsAdapter(Context context, int resource, ArrayList<Transaction> transactions) {
+    super(context, resource, transactions);
+  }
+
+  @NonNull
+  @Override
+  public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    if (convertView == null) {
+      convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_transaction,
+          parent, false);
     }
+    TextView nameView = convertView.findViewById(R.id.nameView_tran);
+    nameView.setText(getItem(position).getTitle());
 
-    @NonNull
-    @Override
-    public View getView(int position,
-                        @Nullable View convertView,
-                        @NonNull ViewGroup parent) {
-        if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_transaction, parent, false);
-        }
-        TextView nameView = convertView.findViewById(R.id.nameView_tran);
-        nameView.setText(getItem(position).getTitle());
+    TextView categoryView = convertView.findViewById(R.id.categoryView_tran);
+    categoryView.setText(getItem(position).getCategory());
 
-        TextView categoryView = convertView.findViewById(R.id.categoryView_tran);
-        categoryView.setText(getItem(position).getCategory());
+    TextView costView = convertView.findViewById(R.id.costView_tran);
+    costView.setText(String.format("$%.2f", getItem(position).getAmount()));
 
-        TextView costView = convertView.findViewById(R.id.costView_tran);
-        costView.setText(getItem(position).getAmount().toString());
+    TextView timeView = convertView.findViewById(R.id.timeView_tran);
+    timeView.setText(getItem(position).getTimeStamp());
 
-        TextView timeView = convertView.findViewById(R.id.timeView_tran);
-        timeView.setText(getItem(position).getTimeStamp());
-
-        return convertView;
-    }
+    return convertView;
+  }
 }
