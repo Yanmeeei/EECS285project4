@@ -140,23 +140,19 @@ public class CategoryListActivity extends AppCompatActivity
                                                      boolean isIncome) {
         Double amount_double = Double.parseDouble(amount);
 
-        if (isIncome) {
-            amount_double = -amount_double;
-        }
-
-        transactions.add(0, new Transaction(title, category, amount_double));
+        transactions.add(0, new Transaction(title, category, amount_double, isIncome));
 
         //update category
         boolean found = false;
         for (int i = 0; i < categories.size(); i++) {
             if (categories.get(i).getTitle().equals(category)) {
-                categories.get(i).addAmount(amount_double);
+                categories.get(i).addAmount(amount_double, isIncome);
                 found = true;
                 break;
             }
         }
         if (!found) {
-            categories.add(new Category(category, amount_double));
+            categories.add(new Category(category, amount_double, isIncome));
         }
         categories.sort(new CategoryComparator());
         writeBudgets();
@@ -181,7 +177,11 @@ public class CategoryListActivity extends AppCompatActivity
 
         Double totalAmount = 0.0;
         for (int i = 0; i < categories.size(); i++) {
-            totalAmount += categories.get(i).getAmount();
+            if (categories.get(i).isPositive()) {
+                totalAmount += categories.get(i).getAmount();
+            } else {
+                totalAmount -= categories.get(i).getAmount();
+            }
         }
 
         TextView totalView = findViewById(R.id.totalCostView);

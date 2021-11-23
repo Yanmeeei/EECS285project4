@@ -9,12 +9,14 @@ public class Transaction implements Serializable {
     private String category;
     private Double amount;
     private String timeStamp;
+    private boolean isIncome;
 
-    Transaction(String title, String category, Double amount) {
+    Transaction(String title, String category, Double amount, boolean isIncome) {
         this.title = title;
         this.category = category;
         this.amount = amount;
         this.timeStamp = new SimpleDateFormat("yyyy-MM-dd | HH:mm").format(new java.util.Date());
+        this.isIncome = isIncome;
     }
 
     String getTitle() {
@@ -32,4 +34,6 @@ public class Transaction implements Serializable {
     String getTimeStamp() {
         return timeStamp;
     }
+
+    boolean isIncome() {return isIncome;}
 }

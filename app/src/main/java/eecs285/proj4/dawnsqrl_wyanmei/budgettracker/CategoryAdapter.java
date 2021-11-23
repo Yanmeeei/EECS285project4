@@ -29,6 +29,9 @@ class CategoryAdapter extends ArrayAdapter<Category> {
 
         TextView costView = convertView.findViewById(R.id.mainCostView);
         costView.setText(String.format("$%.2f", getItem(position).getAmount()));
+        if (!getItem(position).isPositive()) {
+            costView.setTextColor(getContext().getResources().getColor(R.color.green, getContext().getTheme()));
+        }
 
         TextView titleView = convertView.findViewById(R.id.mainCategoryView);
         titleView.setText(getItem(position).getTitle());

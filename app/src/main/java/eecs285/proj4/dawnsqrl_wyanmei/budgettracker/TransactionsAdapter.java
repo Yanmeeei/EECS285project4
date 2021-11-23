@@ -33,6 +33,9 @@ public class TransactionsAdapter extends ArrayAdapter<Transaction> {
 
         TextView costView = convertView.findViewById(R.id.costView_tran);
         costView.setText(String.format("$%.2f", getItem(position).getAmount()));
+        if (getItem(position).isIncome()) {
+            costView.setTextColor(getContext().getResources().getColor(R.color.green, getContext().getTheme()));
+        }
 
         TextView timeView = convertView.findViewById(R.id.timeView_tran);
         timeView.setText(getItem(position).getTimeStamp());
