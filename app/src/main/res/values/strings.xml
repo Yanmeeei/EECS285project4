@@ -11,7 +11,8 @@
     <string name="text_category">Category</string>
     <string name="text_name">Name</string>
     <string name="text_cost">Cost</string>
-    <string name="warning">WARNING: This will delete all transactions. Proceed?</string>
+<!--    <string name="warning">WARNING: This will delete all transactions. Proceed?</string>-->
+    <string name="warning">WARNING: \nAre you sure you want to delete all transactions? They will be lost forever! (A long time!)</string>-->
     <string name="text_error_category">Enter a category</string>
     <string name="text_error_name">Enter a name</string>
     <string name="text_error_cost">Enter a valid cost</string>

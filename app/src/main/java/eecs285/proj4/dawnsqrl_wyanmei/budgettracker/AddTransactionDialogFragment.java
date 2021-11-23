@@ -167,13 +167,13 @@ public class AddTransactionDialogFragment extends DialogFragment {
         if (TextUtils.isEmpty(titleText.getText().toString())
             || TextUtils.isEmpty(categoryText.getText().toString())
             || TextUtils.isEmpty(costText.getText().toString())) {
-//
-//            if (TextUtils.isEmpty(titleText.getText().toString())) {
-//                titleInputLayout.setError("required input");
-//                titleText.requestFocus();
-//            } else {
-//                titleInputLayout.setError(null);
-//            }
+
+            if (TextUtils.isEmpty(titleText.getText().toString())) {
+                titleInputLayout.setError("required input");
+                titleText.requestFocus();
+            } else {
+                titleInputLayout.setError(null);
+            }
 
             if (TextUtils.isEmpty(categoryText.getText().toString())) {
                 categoryInputLayout.setError("required input");
