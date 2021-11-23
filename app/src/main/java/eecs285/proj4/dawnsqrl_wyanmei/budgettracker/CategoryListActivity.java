@@ -5,6 +5,7 @@ import androidx.fragment.app.DialogFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -30,59 +31,62 @@ public class CategoryListActivity extends AppCompatActivity
     dialog.show(getSupportFragmentManager(), "AddTransactionDialogFragment");
   }
 
-  private static final String BUDGET_FILE = "budget_tracker_saveFile";
+  private static final String TRANSACTION_FILE = "transaction_saveFile";
+  private static final String CATEGORY_FILE = "category_saveFile";
   public static final String EXTRA_TRANSACTION = "extra transaction";
 
   private ArrayList<Transaction> transactions = new ArrayList<>();
 
-//  private TreeMap<String, Category> categories = new TreeMap<>();
   private ArrayList<Category> categories = new ArrayList<>();
   private ArrayAdapter<Category> adapter_cat;
 
   private void readBudget() {
-    File file = new File(getFilesDir(), BUDGET_FILE);
+    File file_tran = new File(getFilesDir(), TRANSACTION_FILE);
+    File file_cat = new File(getFilesDir(), CATEGORY_FILE);
+
     try (ObjectInputStream input =
                  new ObjectInputStream(
-                         new FileInputStream(file))) {
-      //只储存transaction，之后生成category
-      //或者都储存）
+                         new FileInputStream(file_tran))) {
       transactions = (ArrayList<Transaction>) input.readObject();
-//      categories = (ArrayList<Category>) input.readObject();
-      categories = new ArrayList<>();
-      //TODO: 处理Category
-
     } catch (IOException | ClassNotFoundException exception) {
       transactions = new ArrayList<>();
-//      categories = new TreeMap<>();
+    }
+
+    try (ObjectInputStream input =
+                 new ObjectInputStream(
+                         new FileInputStream(file_cat))) {
+      categories = (ArrayList<Category>) input.readObject();
+    } catch (IOException | ClassNotFoundException exception) {
       categories = new ArrayList<>();
     }
+
+
   }
 
-  private void writeTransactions() {
-    File file = new File(getFilesDir(), BUDGET_FILE);
+  private void writeBudgets() {
+    File file_tran = new File(getFilesDir(), TRANSACTION_FILE);
+    File file_cat = new File(getFilesDir(), CATEGORY_FILE);
+
     try (ObjectOutputStream output =
                  new ObjectOutputStream(
-                         new FileOutputStream(file))) {
+                         new FileOutputStream(file_tran))) {
       output.writeObject(transactions);
-//      output.writeObject(categories);
     } catch (IOException exception) {
       // cause runtime error
-      throw new IllegalStateException("something bad happened");
+      throw new IllegalStateException("something bad happened when saving transactions");
     }
-  }
 
-  private void writeCategories() {
-    File file = new File(getFilesDir(), BUDGET_FILE);
     try (ObjectOutputStream output =
                  new ObjectOutputStream(
-                         new FileOutputStream(file))) {
-//      output.writeObject(transactions);
+                         new FileOutputStream(file_cat))) {
       output.writeObject(categories);
     } catch (IOException exception) {
       // cause runtime error
-      throw new IllegalStateException("something bad happened");
+      throw new IllegalStateException("something bad happened when saving categories");
     }
   }
+
+
 
 
   @Override
@@ -90,24 +94,12 @@ public class CategoryListActivity extends AppCompatActivity
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_category_list);
 
-//    readBudget();
+    readBudget();
 
     adapter_cat = new CategoryAdapter(this, R.layout.item_category, categories);
     ListView listView =
             findViewById(R.id.categoryList);
     listView.setAdapter(adapter_cat);
-
-
-
-//    Button btn = (Button) findViewById(R.id.transactionButton);
-//
-//    btn.setOnClickListener(new View.OnClickListener() {
-//      @Override
-//      public void onClick(View v) {
-////        startActivity(new Intent(CategoryListActivity.this, TransactionListActivity.class));
-//        viewTransactions();
-//      }
-//    });
 
   }
 
@@ -127,8 +119,6 @@ public class CategoryListActivity extends AppCompatActivity
                                                    String amount) {
     Double amount_double = Double.parseDouble(amount);
     transactions.add(new Transaction(title, category, amount_double));
-    writeTransactions();
-//    adapter_tran.notifyDataSetChanged();
 
     //update category
     boolean found = false;
@@ -144,20 +134,10 @@ public class CategoryListActivity extends AppCompatActivity
     }
     categories.sort(new CategoryComparator());
 
+    writeBudgets();
 
-
-
-//    if (categories.containsKey(category)) {
-//      categories.put(category,
-//                      new Category(category,
-//                              amount_double + categories.get(category).getAmount()));
-//    } else {
-//      categories.put(category, new Category(category, amount_double));
-//    }
-//    adapter_cat = new CategoryAdapter(this, R.layout.item_category, convertTreeMap(categories));
     adapter_cat.notifyDataSetChanged();
-//    writeCategories();
-//    adapter_cat.notifyDataSetChanged();
+
   }
 
   ArrayList<Category> convertTreeMap(TreeMap<String, Category> categories) {

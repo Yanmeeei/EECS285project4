@@ -19,20 +19,8 @@ import java.util.Map;
 import java.util.TreeMap;
 
 class CategoryAdapter extends ArrayAdapter<Category> {
-//    private Context context;
-//    private TreeMap<String, Category> treeMap;
-//    private ArrayList<Category> mapKeys;
-
     CategoryAdapter(Context context, int resource, ArrayList<Category> categories) {
             super(context, resource, categories);
-//            this.context=context;
-//            this.treeMap=categories;
-//
-//        for (Map.Entry<String, Category> entry : categories.entrySet()) {
-//            mapKeys.add(new Category(entry.getValue().getTitle(), entry.getValue().getAmount()));
-//        }
-
-//            mapKeys= (Category[]) categories.values().toArray();
     }
 
     @NonNull

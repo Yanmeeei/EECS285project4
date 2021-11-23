@@ -33,6 +33,10 @@ public class TransactionsAdapter extends ArrayAdapter<Transaction> {
 
         TextView costView = convertView.findViewById(R.id.costView_tran);
         costView.setText(getItem(position).getAmount().toString());
+
+        TextView timeView = convertView.findViewById(R.id.timeView_tran);
+        timeView.setText(getItem(position).getTimeStamp());
+
         return convertView;
     }
 }

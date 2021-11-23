@@ -25,7 +25,6 @@ public class TransactionListActivity extends AppCompatActivity {
 
     //get passed info
     Intent intent = getIntent();
-//    ArrayList<Transaction> transactions = (ArrayList<Transaction>) intent.getSerializableExtra(CategoryListActivity.EXTRA_TRANSACTION);
     ArrayList<Transaction> transactions = (ArrayList<Transaction>) intent.getSerializableExtra(CategoryListActivity.EXTRA_TRANSACTION);
 
     adapter_tran = new TransactionsAdapter(this, R.layout.activity_transaction_list, transactions);
