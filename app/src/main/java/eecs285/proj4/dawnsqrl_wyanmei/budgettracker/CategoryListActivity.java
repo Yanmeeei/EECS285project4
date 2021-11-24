@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -25,7 +27,8 @@ import java.util.Locale;
 
 public class CategoryListActivity extends AppCompatActivity
     implements AddTransactionDialogFragment.AddTransactionDialogListener,
-    ClearDataDialogFragment.ClearDataDialogListener {
+    ClearDataDialogFragment.ClearDataDialogListener,
+    AdapterView.OnItemLongClickListener {
 
   private static final String TRANSACTION_FILE = "transaction_saveFile";
   private static final String CATEGORY_FILE = "category_saveFile";
@@ -66,14 +69,14 @@ public class CategoryListActivity extends AppCompatActivity
       output.writeObject(transactions);
     } catch (IOException exception) {
       // cause runtime error
-      throw new IllegalStateException("something bad happened when saving transactions");
+      throw new IllegalStateException("Something bad happened when saving transactions");
     }
 
     try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(file_cat))) {
       output.writeObject(categories);
     } catch (IOException exception) {
       // cause runtime error
-      throw new IllegalStateException("something bad happened when saving categories");
+      throw new IllegalStateException("Something bad happened when saving categories");
     }
   }
 
@@ -87,6 +90,11 @@ public class CategoryListActivity extends AppCompatActivity
     adapter_category = new CategoryAdapter(this, R.layout.item_category, categories);
     ListView listView = findViewById(R.id.categoryList);
     listView.setAdapter(adapter_category);
+    listView.setOnItemLongClickListener((parent, view, position, id) -> {
+      Toast.makeText(CategoryListActivity.this, getResources().getString(R.string.hint_delete),
+          Toast.LENGTH_SHORT).show();
+      return true;
+    });
 
     if ((getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK)
         == Configuration.UI_MODE_NIGHT_NO) {
@@ -104,6 +112,11 @@ public class CategoryListActivity extends AppCompatActivity
     writeBudgets();
     viewTotal();
     adapter_category.notifyDataSetChanged();
+  }
+
+  @Override
+  public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+    return true;
   }
 
   static class CategoryComparator implements Comparator<Category> {

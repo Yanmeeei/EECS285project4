@@ -64,7 +64,7 @@ public class TransactionListActivity extends AppCompatActivity
       Toast.makeText(TransactionListActivity.this, "Item \"" + thisName + "\" removed",
           Toast.LENGTH_SHORT).show();
       adapter_transaction.notifyDataSetChanged();
-      this.recreate();
+      listView.setAdapter(adapter_transaction);
       return true;
     });
     intentBack = new Intent(this, CategoryListActivity.class);
