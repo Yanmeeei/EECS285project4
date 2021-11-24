@@ -9,6 +9,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="12sp"
         android:text="@string/warning_one"
         android:textColor="@color/warning"
         android:textSize="16sp"
@@ -26,7 +27,17 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="12sp"
         android:text="@string/warning_three"
         android:textColor="?android:textColorPrimary"
         android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/warning_four"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="16sp"
+        android:textStyle="italic" />
 </LinearLayout>

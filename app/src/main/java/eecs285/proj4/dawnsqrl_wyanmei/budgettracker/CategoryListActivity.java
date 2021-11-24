@@ -9,6 +9,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
@@ -28,10 +29,11 @@ public class CategoryListActivity extends AppCompatActivity
 
   private static final String TRANSACTION_FILE = "transaction_saveFile";
   private static final String CATEGORY_FILE = "category_saveFile";
-  public static final String EXTRA_TRANSACTION = "extra transaction";
+  public static final String EXTRA_TRANSACTION = "extra_transaction";
+  public static final String EXTRA_CATEGORY = "extra_category";
   private ArrayList<Transaction> transactions = new ArrayList<>();
   private ArrayList<Category> categories = new ArrayList<>();
-  private ArrayAdapter<Category> adapter_cat;
+  private ArrayAdapter<Category> adapter_category;
 
   public void addTransaction(View view) {
     DialogFragment dialog = new AddTransactionDialogFragment();
@@ -82,9 +84,9 @@ public class CategoryListActivity extends AppCompatActivity
 
     readBudget();
 
-    adapter_cat = new CategoryAdapter(this, R.layout.item_category, categories);
+    adapter_category = new CategoryAdapter(this, R.layout.item_category, categories);
     ListView listView = findViewById(R.id.categoryList);
-    listView.setAdapter(adapter_cat);
+    listView.setAdapter(adapter_category);
 
     if ((getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK)
         == Configuration.UI_MODE_NIGHT_NO) {
@@ -99,9 +101,9 @@ public class CategoryListActivity extends AppCompatActivity
   public void onDialogPositiveClick_ClearData(DialogFragment dialog) {
     transactions.clear();
     categories.clear();
-    viewTotal();
     writeBudgets();
-    adapter_cat.notifyDataSetChanged();
+    viewTotal();
+    adapter_category.notifyDataSetChanged();
   }
 
   static class CategoryComparator implements Comparator<Category> {
@@ -131,15 +133,26 @@ public class CategoryListActivity extends AppCompatActivity
     }
     categories.sort(new CategoryComparator());
     writeBudgets();
-    adapter_cat.notifyDataSetChanged();
-
+    adapter_category.notifyDataSetChanged();
     viewTotal();
   }
 
   public void viewTransactions(View view) {
     Intent intent = new Intent(this, TransactionListActivity.class);
     intent.putExtra(EXTRA_TRANSACTION, transactions);
-    startActivity(intent);
+    intent.putExtra(EXTRA_CATEGORY, categories);
+    startActivityForResult(intent, 0);
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    transactions = (ArrayList<Transaction>) data.getSerializableExtra(EXTRA_TRANSACTION);
+    categories = (ArrayList<Category>) data.getSerializableExtra(EXTRA_CATEGORY);
+    writeBudgets();
+    adapter_category.notifyDataSetChanged();
+    viewTotal();
+    this.recreate();
   }
 
   public void clearData_onClickButton(View view) {
@@ -147,7 +160,7 @@ public class CategoryListActivity extends AppCompatActivity
     dialog.show(getSupportFragmentManager(), "ClearDataDialogFragment");
   }
 
-  void viewTotal() {
+  public void viewTotal() {
     Double totalAmount = 0.0;
     for (int i = 0; i < categories.size(); i++) {
       totalAmount += categories.get(i).getAmount();

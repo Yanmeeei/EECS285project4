@@ -22,6 +22,7 @@ public class AddTransactionDialogFragment extends DialogFragment {
 
   private AddTransactionDialogListener listener;
   private Context thisContext;
+  private View view;
 
   interface AddTransactionDialogListener {
     void onDialogPositiveClick_AddTransaction(DialogFragment dialog, String title, String category,
@@ -41,7 +42,7 @@ public class AddTransactionDialogFragment extends DialogFragment {
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     LayoutInflater inflater = LayoutInflater.from(getActivity());
     builder.setTitle(R.string.title_dialog_add);
-    View view = inflater.inflate(R.layout.dialog_add_transaction, null);
+    view = inflater.inflate(R.layout.dialog_add_transaction, null);
 
     TextInputLayout titleInputLayout = view.findViewById(R.id.titleInputLayout);
     TextInputLayout categoryInputLayout = view.findViewById(R.id.categoryInputLayout);
@@ -99,15 +100,7 @@ public class AddTransactionDialogFragment extends DialogFragment {
       }
     });
 
-    builder.setView(view).setPositiveButton(R.string.button_add,
-        (dialogInterface, id) -> {
-          if (!validate(view)) {
-            ((ViewGroup) view.getParent()).removeView(view);
-            builder.show();
-          } else {
-            addTransaction(view);
-          }
-        });
+    builder.setView(view).setPositiveButton(R.string.button_add, null);
 
     builder.setView(view).setNegativeButton(R.string.button_cancel,
         (dialogInterface, id) -> {
@@ -117,6 +110,20 @@ public class AddTransactionDialogFragment extends DialogFragment {
         });
 
     return builder.create();
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    AlertDialog dialog = (AlertDialog) getDialog();
+    if (dialog != null) {
+      dialog.getButton(Dialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+        if (validate(view)) {
+          addTransaction(view);
+          dialog.dismiss();
+        }
+      });
+    }
   }
 
   void addTransaction(View view) {

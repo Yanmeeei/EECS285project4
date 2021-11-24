@@ -31,4 +31,12 @@ public class Category implements Serializable {
       this.amount += amount;
     }
   }
+
+  void subtractAmount(Double amount, boolean isIncome) {
+    if (isIncome) {
+      this.amount += amount;
+    } else {
+      this.amount -= amount;
+    }
+  }
 }
