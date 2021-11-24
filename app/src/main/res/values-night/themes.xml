@@ -16,8 +16,14 @@
         <item name="colorAccent">@color/highlight</item>
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textCursorDrawable">@null</item>
+
     </style>
+
     <style name="ActionBarPaint" parent="Widget.MaterialComponents.ActionBar.Primary">
         <item name="background">@color/dark_gray</item>
+    </style>
+
+    <style name="SwitchPaint">
+        <item name="colorControlActivated">@color/highlight</item>
     </style>
 </resources>

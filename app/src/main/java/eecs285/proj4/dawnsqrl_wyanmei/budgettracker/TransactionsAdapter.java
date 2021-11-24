@@ -14,32 +14,34 @@ import java.util.ArrayList;
 
 public class TransactionsAdapter extends ArrayAdapter<Transaction> {
 
-    TransactionsAdapter(Context context, int resource, ArrayList<Transaction> transactions) {
-        super(context, resource, transactions);
+  TransactionsAdapter(Context context, int resource, ArrayList<Transaction> transactions) {
+    super(context, resource, transactions);
+  }
+
+  @NonNull
+  @Override
+  public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    if (convertView == null) {
+      convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_transaction,
+          parent, false);
+    }
+    TextView nameView = convertView.findViewById(R.id.nameView_tran);
+    nameView.setText(getItem(position).getTitle());
+
+    TextView categoryView = convertView.findViewById(R.id.categoryView_tran);
+    categoryView.setText(getItem(position).getCategory());
+
+    TextView costView = convertView.findViewById(R.id.costView_tran);
+    if (getItem(position).isIncome()) {
+      costView.setText(String.format("-$%.2f", getItem(position).getAmount()));
+      costView.setTextColor(getContext().getResources().getColor(R.color.safe, getContext().getTheme()));
+    } else {
+      costView.setText(String.format("$%.2f", getItem(position).getAmount()));
     }
 
-    @NonNull
-    @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_transaction,
-                    parent, false);
-        }
-        TextView nameView = convertView.findViewById(R.id.nameView_tran);
-        nameView.setText(getItem(position).getTitle());
+    TextView timeView = convertView.findViewById(R.id.timeView_tran);
+    timeView.setText(getItem(position).getTimeStamp());
 
-        TextView categoryView = convertView.findViewById(R.id.categoryView_tran);
-        categoryView.setText(getItem(position).getCategory());
-
-        TextView costView = convertView.findViewById(R.id.costView_tran);
-        costView.setText(String.format("$%.2f", getItem(position).getAmount()));
-        if (getItem(position).isIncome()) {
-            costView.setTextColor(getContext().getResources().getColor(R.color.green, getContext().getTheme()));
-        }
-
-        TextView timeView = convertView.findViewById(R.id.timeView_tran);
-        timeView.setText(getItem(position).getTimeStamp());
-
-        return convertView;
-    }
+    return convertView;
+  }
 }

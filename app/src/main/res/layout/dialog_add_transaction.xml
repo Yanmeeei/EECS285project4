@@ -4,10 +4,34 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingLeft="4dp"
+    android:paddingLeft="8dp"
     android:paddingTop="16dp"
-    android:paddingRight="4dp"
+    android:paddingRight="8dp"
     android:paddingBottom="4dp">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/titleInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="4dp"
+        app:boxBackgroundColor="@color/invisible"
+        app:boxStrokeColor="@color/highlight"
+        app:boxStrokeErrorColor="@color/warning"
+        app:counterOverflowTextColor="@color/warning"
+        app:errorEnabled="true"
+        app:errorTextColor="@color/warning"
+        app:hintTextColor="@color/highlight">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nameInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:hint="@string/text_name"
+            android:inputType="textCapWords"
+            android:textColor="?android:textColorPrimary" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/categoryInputLayout"
@@ -35,7 +59,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/titleInputLayout"
+        android:id="@+id/costInputLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="4dp"
@@ -48,33 +72,9 @@
         app:hintTextColor="@color/highlight">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nameInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:hint="@string/text_name"
-            android:inputType="textCapWords"
-            android:textColor="?android:textColorPrimary" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/costInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:boxBackgroundColor="@color/invisible"
-        app:boxStrokeColor="@color/highlight"
-        app:boxStrokeErrorColor="@color/warning"
-        app:counterOverflowTextColor="@color/warning"
-        app:errorEnabled="true"
-        app:errorTextColor="@color/warning"
-        app:hintTextColor="@color/highlight">
-
-        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/costInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:hint="@string/text_cost"
@@ -82,9 +82,15 @@
             android:textColor="?android:textColorPrimary" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Switch
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/incomeSwitch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/button_income" />
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:text="@string/button_income"
+        android:textColorHighlight="@color/highlight"
+        android:textColorLink="@color/highlight"
+        android:textSize="16sp"
+        android:theme="@style/SwitchPaint" />
 </LinearLayout>

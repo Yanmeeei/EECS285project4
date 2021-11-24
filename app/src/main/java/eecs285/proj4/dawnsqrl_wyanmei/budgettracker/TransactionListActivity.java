@@ -11,24 +11,24 @@ import java.util.ArrayList;
 
 public class TransactionListActivity extends AppCompatActivity {
 
-    private ArrayAdapter<Transaction> adapter_transaction;
+  private ArrayAdapter<Transaction> adapter_transaction;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transaction_list);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_transaction_list);
 
-        //set layput
-        setContentView(R.layout.activity_transaction_list);
-        setTitle(R.string.title_activity_transaction_list);
+    //set layput
+    setContentView(R.layout.activity_transaction_list);
+    setTitle(R.string.title_activity_transaction_list);
 
-        //get passed info
-        Intent intent = getIntent();
-        ArrayList<Transaction> transactions = (ArrayList<Transaction>)
-                intent.getSerializableExtra(CategoryListActivity.EXTRA_TRANSACTION);
-        adapter_transaction = new TransactionsAdapter(this, R.layout.activity_transaction_list,
-                transactions);
-        ListView listView = findViewById(R.id.transactionList);
-        listView.setAdapter(adapter_transaction);
-    }
+    //get passed info
+    Intent intent = getIntent();
+    ArrayList<Transaction> transactions = (ArrayList<Transaction>)
+        intent.getSerializableExtra(CategoryListActivity.EXTRA_TRANSACTION);
+    adapter_transaction = new TransactionsAdapter(this, R.layout.activity_transaction_list,
+        transactions);
+    ListView listView = findViewById(R.id.transactionList);
+    listView.setAdapter(adapter_transaction);
+  }
 }

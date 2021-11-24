@@ -3,7 +3,7 @@
     <string name="title_activity_transaction_list">All Transactions</string>
     <string name="title_dialog_add">Add Transaction</string>
     <string name="button_clear">Clear Data</string>
-    <string name="button_income">this is an income</string>
+    <string name="button_income">Income item (appears as negative)</string>
     <string name="button_transaction">Transactions</string>
     <string name="button_add">Add</string>
     <string name="button_cancel">Cancel</string>
@@ -11,11 +11,14 @@
     <string name="text_category">Category</string>
     <string name="text_name">Name</string>
     <string name="text_cost">Cost</string>
-<!--    <string name="warning">WARNING: This will delete all transactions. Proceed?</string>-->
-    <string name="warning">WARNING: \nAre you sure you want to delete all transactions? They will be lost forever! (A long time!)</string>-->
+    <string name="warning_one">WARNING</string>
+    <string name="warning_two">Are you sure you want to delete all transactions?</string>
+    <string name="warning_three">They will be lost forever! (A long time!)</string>
     <string name="text_error_category">Enter a category</string>
     <string name="text_error_name">Enter a name</string>
-    <string name="text_error_cost">Enter a valid cost</string>
-    <string name="toast_dark_mode_one">This app supports dark mode.\nProtect your eyes!</string>
+    <string name="text_error_cost_empty">Enter a cost</string>
+    <string name="text_error_cost_format">Enter a valid cost</string>
+    <string name="toast_dark_mode_one">This app supports dark mode.\n
+        Protect your eyes!</string>
     <string name="toast_dark_mode_two">This message will no longer display if you switch to dark mode.</string>
 </resources>

@@ -7,6 +7,6 @@
     <color name="accent">#FF8DB2D9</color>
     <color name="warning">#FFFA734D</color>
     <color name="highlight">#FFDB9D21</color>
-    <color name="green">#8BC34A</color>
+    <color name="safe">#FF94DB21</color>
     <color name="invisible">#00000000</color>
 </resources>
