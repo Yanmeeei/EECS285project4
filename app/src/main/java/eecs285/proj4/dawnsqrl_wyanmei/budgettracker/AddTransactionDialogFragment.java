@@ -55,19 +55,12 @@ public class AddTransactionDialogFragment extends DialogFragment {
     titleText.addTextChangedListener(new TextWatcher() {
       @Override
       public void onTextChanged(CharSequence s, int start, int before, int count) {
-        if (s.length() != 0){
-          titleInputLayout.setError(null);
-        } else {
-          titleInputLayout.setError(thisContext.getString(R.string.text_error_name));
-          titleText.requestFocus();
-        }
+        titleInputLayout.setError(null);
       }
 
       @Override
       public void afterTextChanged(Editable s) {
-        if (s.length() != 0){
-          titleInputLayout.setError(null);
-        }
+        titleText.setError(null);
       }
 
       @Override
