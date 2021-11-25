@@ -10,7 +10,7 @@
     <string name="button_yes">Yes</string>
     <string name="text_category">Category</string>
     <string name="text_name">Name</string>
-    <string name="text_cost">Cost (unit: $)</string>
+    <string name="text_cost">Cost ($)</string>
     <string name="warning_one">WARNING</string>
     <string name="warning_two">Are you sure you want to delete all transactions?</string>
     <string name="warning_three">They will be lost forever! (A long time!)</string>
