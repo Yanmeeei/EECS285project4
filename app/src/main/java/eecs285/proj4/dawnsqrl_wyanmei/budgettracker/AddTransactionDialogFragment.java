@@ -64,8 +64,7 @@ public class AddTransactionDialogFragment extends DialogFragment {
       }
 
       @Override
-      public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-      }
+      public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
     });
 
     categoryText.addTextChangedListener(new TextWatcher() {
@@ -80,8 +79,7 @@ public class AddTransactionDialogFragment extends DialogFragment {
       }
 
       @Override
-      public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-      }
+      public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
     });
 
     costText.addTextChangedListener(new TextWatcher() {
@@ -96,8 +94,7 @@ public class AddTransactionDialogFragment extends DialogFragment {
       }
 
       @Override
-      public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-      }
+      public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
     });
 
     builder.setView(view).setPositiveButton(R.string.button_add, null);

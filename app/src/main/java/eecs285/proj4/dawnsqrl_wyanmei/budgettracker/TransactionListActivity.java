@@ -61,7 +61,7 @@ public class TransactionListActivity extends AppCompatActivity
         }
       }
       if (!hasRemaining) categories.remove(categoryIndex);
-      Toast.makeText(TransactionListActivity.this, "Item \"" + thisName + "\" removed",
+      Toast.makeText(TransactionListActivity.this, "Item \"" + thisName + "\" deleted",
           Toast.LENGTH_SHORT).show();
       adapter_transaction.notifyDataSetChanged();
       listView.setAdapter(adapter_transaction);

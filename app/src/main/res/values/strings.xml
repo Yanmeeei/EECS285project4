@@ -21,5 +21,5 @@
     <string name="text_error_cost_empty">Enter a cost</string>
     <string name="text_error_cost_format">Enter a valid cost</string>
     <string name="toast_dark_mode_one">This app supports dark mode.\nProtect your eyes!</string>
-    <string name="toast_dark_mode_two">This message will no longer display if you switch to dark mode.</string>
+    <string name="toast_dark_mode_two">This startup message will no longer display if you switch to dark mode.</string>
 </resources>

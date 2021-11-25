@@ -96,12 +96,6 @@ public class CategoryListActivity extends AppCompatActivity
       return true;
     });
 
-    if ((getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK)
-        == Configuration.UI_MODE_NIGHT_NO) {
-      Toast.makeText(this, R.string.toast_dark_mode_one, Toast.LENGTH_LONG).show();
-      Toast.makeText(this, R.string.toast_dark_mode_two, Toast.LENGTH_LONG).show();
-    }
-
     viewTotal();
   }
 
