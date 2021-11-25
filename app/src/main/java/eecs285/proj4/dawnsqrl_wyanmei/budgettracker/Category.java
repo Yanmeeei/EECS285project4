@@ -9,7 +9,7 @@ public class Category implements Serializable {
 
   Category(String title, Double amount, boolean isIncome) {
     this.title = title;
-    if (isIncome) {
+    if (isIncome && amount != 0) {
       this.amount = -amount;
     } else {
       this.amount = amount;
@@ -25,7 +25,7 @@ public class Category implements Serializable {
   }
 
   void addAmount(Double amount, boolean isIncome) {
-    if (isIncome) {
+    if (isIncome && amount != 0.0) {
       this.amount -= amount;
     } else {
       this.amount += amount;
